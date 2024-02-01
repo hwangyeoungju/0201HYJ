@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b2478219cb13c2469221fffaa5c4ab6, type: 3}
+  m_Name: Black Chair
+  m_EditorClassIdentifier: 
+  Name: "\uAC80\uC740\uC758\uC790"
+  Icon: {fileID: 21300000, guid: abe410f1194a22b41b036d0c6518a01a, type: 3}
+  Prefab: {fileID: 8102282320610394579, guid: c7651b7aade19724f9f8b5c1cd79072a, type: 3}

@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b2478219cb13c2469221fffaa5c4ab6, type: 3}
+  m_Name: WoodTable2
+  m_EditorClassIdentifier: 
+  Name: "\uD070\uB098\uBB34\uD14C\uC774\uBE14"
+  Icon: {fileID: 21300000, guid: 39f031ef58a67c840b8eff6ac08da7e3, type: 3}
+  Prefab: {fileID: 3288096237113711922, guid: f660acf3e4a0de145aa7445d060926a2, type: 3}

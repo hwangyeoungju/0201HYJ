@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b2478219cb13c2469221fffaa5c4ab6, type: 3}
+  m_Name: WhiteBag
+  m_EditorClassIdentifier: 
+  Name: "\uD558\uC580\uAC00\uBC29"
+  Icon: {fileID: 21300000, guid: 95a51a1cc2305f9458237214a48d3eac, type: 3}
+  Prefab: {fileID: 6124395901781430228, guid: d525984255759be419fbef423179c58e, type: 3}
