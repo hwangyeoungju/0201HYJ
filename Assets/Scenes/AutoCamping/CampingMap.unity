@@ -1360,6 +1360,37 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 72940794}
   m_Mesh: {fileID: 6329158148709259305, guid: b92f22079780f1743a889a898254f95f, type: 3}
+--- !u!1 &75585389
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 75585390}
+  m_Layer: 0
+  m_Name: TKL
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &75585390
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 75585389}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 24.946161, y: 14.423056, z: -209.87282}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &78239237 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1185796103954021786, guid: 5b90bf6ba5a4f944691a4d120ae8e4ea,
@@ -26356,3 +26387,4 @@ SceneRoots:
   - {fileID: 1416607249}
   - {fileID: 2063613128}
   - {fileID: 488065322}
+  - {fileID: 75585390}
