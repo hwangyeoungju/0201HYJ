@@ -12378,6 +12378,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: IceBox_002 Blue
       objectReference: {fileID: 0}
+    - target: {fileID: 6065005475214163518, guid: 9ebd3781b1375e34e944770a63cdeadc,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.89540553
+      objectReference: {fileID: 0}
+    - target: {fileID: 6065005475214163518, guid: 9ebd3781b1375e34e944770a63cdeadc,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.44525152
+      objectReference: {fileID: 0}
+    - target: {fileID: 6065005475214163518, guid: 9ebd3781b1375e34e944770a63cdeadc,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -52.879
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
