@@ -25,6 +25,7 @@ TagManager:
   - Water
   - Box
   - DoorHand
+  - Marker
   layers:
   - Default
   - TransparentFX
