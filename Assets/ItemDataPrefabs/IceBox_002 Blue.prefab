@@ -125,7 +125,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 170998408163055354}
-  - component: {fileID: 9028412106115472765}
   m_Layer: 0
   m_Name: IceBox_002 Blue
   m_TagString: Untagged
@@ -151,22 +150,6 @@ Transform:
   - {fileID: 6065005475214163518}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!111 &9028412106115472765
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 654238598350441536}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: d7f8bbe2736f7c04baac5911b47ce926, type: 2}
-  m_Animations:
-  - {fileID: 7400000, guid: d7f8bbe2736f7c04baac5911b47ce926, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!1 &3266217524194996010
 GameObject:
   m_ObjectHideFlags: 0
