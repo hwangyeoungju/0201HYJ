@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using OVR; // Oculus VR의 OVRInput을 사용하기 위해 추가
-using UnityEngine.XR;
 
 public class UICanvasToggle : MonoBehaviour
 {
