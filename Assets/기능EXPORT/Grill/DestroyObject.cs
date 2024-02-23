@@ -11,4 +11,12 @@ public class DestroyObject : MonoBehaviour
             Destroy(collision.gameObject);
         }
     }
+     private void OnCollisionStay(Collision collision)
+     {
+         if (collision.gameObject.CompareTag("Can"))
+         {
+             SoundManager.instance.PlaySfx(SoundManager.Sfx.Drink);
+    Destroy(collision.gameObject);
+         }
+     }
 }
