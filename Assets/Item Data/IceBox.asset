@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: GreenIcebox
   Icon: {fileID: 21300000, guid: cfb7f6577e34ffa4d96075cb144c6954, type: 3}
-  Prefab: {fileID: 489773739824278707, guid: b276ef70aa4e85e4eadca146bbdfb189, type: 3}
+  Prefab: {fileID: 1483673794842932174, guid: 9b81b3887c4cd9d4e8651f2db375aca5, type: 3}

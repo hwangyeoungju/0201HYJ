@@ -19,7 +19,7 @@ public class SoundManager : MonoBehaviour
     AudioSource[] sfxPlayers;
     int channelIndex;
 
-    public enum Sfx { Hammer, SplitWood, ROST, EAT, water};
+    public enum Sfx { Hammer, SplitWood, ROST, EAT, water, Drink};
 
     void Awake()
     {
