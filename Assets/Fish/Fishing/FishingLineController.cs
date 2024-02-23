@@ -5,66 +5,66 @@ using OVR;
 
 public class FishingLineController : MonoBehaviour
 {
-    // ÁÙ°ú »óÈ£ÀÛ¿ëÇÏ´Â °´Ã¼µé
-    public Transform whatTheRopeIsConnectedTo; //ÁÙÀÌ ¿¬°áµÈ °Í
-    public Transform whatIsHangingFromTheRope; //ÁÙ¿¡ ¸Å´Ş¸° °Í
+    // ì¤„ê³¼ ìƒí˜¸ì‘ìš©í•˜ëŠ” ê°ì²´ë“¤
+    public Transform whatTheRopeIsConnectedTo; //ì¤„ì´ ì—°ê²°ëœ ê²ƒ
+    public Transform whatIsHangingFromTheRope; //ì¤„ì— ë§¤ë‹¬ë¦° ê²ƒ
 
-    // ÁÙÀ» Ç¥½ÃÇÏ´Â µ¥ »ç¿ëµÇ´Â ¶óÀÎ ·»´õ·¯
+    // ì¤„ì„ í‘œì‹œí•˜ëŠ” ë° ì‚¬ìš©ë˜ëŠ” ë¼ì¸ ë Œë”ëŸ¬
     private LineRenderer lineRenderer;
 
-    // ¸ğµç ÁÙ ¼½¼ÇÀ» ´ãÀº ¸®½ºÆ®
+    // ëª¨ë“  ì¤„ ì„¹ì…˜ì„ ë‹´ì€ ë¦¬ìŠ¤íŠ¸
     public List<Vector3> allRopeSections = new List<Vector3>();
 
-    //ÁÙ ±æÀÌ
+    //ì¤„ ê¸¸ì´
     [SerializeField]
     private float ropeLength;
     private float minRopeLength = 0.5f;
     private float maxRopeLength = 1f;
-    // ÁÙÀÌ ÁöÅÊÇÏ´Â ¹«°Ô
+    // ì¤„ì´ ì§€íƒ±í•˜ëŠ” ë¬´ê²Œ
     private float loadMass = 1f;
-    // ´õ ¸¹Àº/ÀûÀº ÁÙÀ» Ãß°¡ÇÏ´Â ¼Óµµ
+    // ë” ë§ì€/ì ì€ ì¤„ì„ ì¶”ê°€í•˜ëŠ” ì†ë„
     float winchSpeed = 10f;
 
-    // whatIsHangingFromTheRope ³¬½Ã ¹Ù´ÃÀÇ Áú·®
+    // whatIsHangingFromTheRope ë‚šì‹œ ë°”ëŠ˜ì˜ ì§ˆëŸ‰
     [SerializeField]
     private float whatIsHangingFromTheRopeMass;
 
-    // °¢ ¼¼±×¸ÕÆ®ÀÇ Á¤º¸¸¦ ´ãÀº ¸®½ºÆ®¿Í ÇØ´çÇÏ´Â ±æÀÌ¿Í °³¼ö º¯¼öµé
+    // ê° ì„¸ê·¸ë¨¼íŠ¸ì˜ ì •ë³´ë¥¼ ë‹´ì€ ë¦¬ìŠ¤íŠ¸ì™€ í•´ë‹¹í•˜ëŠ” ê¸¸ì´ì™€ ê°œìˆ˜ ë³€ìˆ˜ë“¤
     private List<RopeSegment> ropeSegments = new List<RopeSegment>();
     private float ropeSegmentLenght = 0.25f;
-    private int segmentCount = 5;
-    //³¬½ÃÁÙÀÇ ³Êºñ
+    private int segmentCount = 8;
+    //ë‚šì‹œì¤„ì˜ ë„ˆë¹„
     [SerializeField]
     private float lineWidth;
     [SerializeField] private int startSegmentCount;
 
-    // ÁÙÀ» ±Ù»çÈ­ÇÏ´Â µ¥ »ç¿ëµÇ´Â Á¶ÀÎÆ®
+    // ì¤„ì„ ê·¼ì‚¬í™”í•˜ëŠ” ë° ì‚¬ìš©ë˜ëŠ” ì¡°ì¸íŠ¸
     SpringJoint springJoint;
 
 
 
     void Start()
     {
-        // SpringJoint ÄÄÆ÷³ÍÆ® °¡Á®¿À±â
+        // SpringJoint ì»´í¬ë„ŒíŠ¸ ê°€ì ¸ì˜¤ê¸°
         springJoint = whatTheRopeIsConnectedTo.GetComponent<SpringJoint>();
 
-        // ÁÙÀ» Ç¥½ÃÇÏ´Â LineRenderer ÄÄÆ÷³ÍÆ® ÃÊ±âÈ­
+        // ì¤„ì„ í‘œì‹œí•˜ëŠ” LineRenderer ì»´í¬ë„ŒíŠ¸ ì´ˆê¸°í™”
         lineRenderer = GetComponent<LineRenderer>();
 
-        // ÁÙÀÇ ½ÃÀÛÁ¡ ¼³Á¤
+        // ì¤„ì˜ ì‹œì‘ì  ì„¤ì •
         Vector3 ropeStartPoint = Vector3.zero;
         segmentCount = startSegmentCount;
         for (int i = 0; i < segmentCount; i++)
         {
-            // °¢ ¼¼±×¸ÕÆ®ÀÇ À§Ä¡ ÃÊ±âÈ­
+            // ê° ì„¸ê·¸ë¨¼íŠ¸ì˜ ìœ„ì¹˜ ì´ˆê¸°í™”
             ropeSegments.Add(new RopeSegment(ropeStartPoint));
             ropeStartPoint.y += ropeSegmentLenght;
         }
 
-        // ÁÙ ±Ù»çÈ­¿¡ ÇÊ¿äÇÑ spring ÃÊ±âÈ­
+        // ì¤„ ê·¼ì‚¬í™”ì— í•„ìš”í•œ spring ì´ˆê¸°í™”
         UpdateSpring();
 
-        // ÁÙÀÌ ÁöÅÊÇÏ´Â ¹°Ã¼¿¡ ¹«°Ô ¼³Á¤
+        // ì¤„ì´ ì§€íƒ±í•˜ëŠ” ë¬¼ì²´ì— ë¬´ê²Œ ì„¤ì •
         whatIsHangingFromTheRope.GetComponent<Rigidbody>().mass = whatIsHangingFromTheRopeMass;
     }
 
@@ -72,7 +72,7 @@ public class FishingLineController : MonoBehaviour
 
     void Update()
     {
-        // LineRenderer¸¦ »ç¿ëÇÏ¿© ÁÙ Ç¥½Ã
+        // LineRendererë¥¼ ì‚¬ìš©í•˜ì—¬ ì¤„ í‘œì‹œ
         DisplayRope();
     }
 
@@ -85,22 +85,22 @@ public class FishingLineController : MonoBehaviour
 
     private void InitRope()
     {
-        float dist = ropeLength; // ·ÎÇÁÀÇ ±æÀÌ¸¦ ³ªÅ¸³»´Â º¯¼ö¸¦ ¼³Á¤ÇÕ´Ï´Ù.
-        int tempSegmentCount = (int)(dist * 2f) + startSegmentCount; // ·ÎÇÁ ¼¼±×¸ÕÆ®ÀÇ ÀÓ½Ã °³¼ö¸¦ °è»êÇÕ´Ï´Ù.
+        float dist = ropeLength; // ë¡œí”„ì˜ ê¸¸ì´ë¥¼ ë‚˜íƒ€ë‚´ëŠ” ë³€ìˆ˜ë¥¼ ì„¤ì •í•©ë‹ˆë‹¤.
+        int tempSegmentCount = (int)(dist * 2f) + startSegmentCount; // ë¡œí”„ ì„¸ê·¸ë¨¼íŠ¸ì˜ ì„ì‹œ ê°œìˆ˜ë¥¼ ê³„ì‚°í•©ë‹ˆë‹¤.
 
         if (tempSegmentCount > ropeSegments.Count)
         {
-            // ¸¸¾à °è»êµÈ ¼¼±×¸ÕÆ® °³¼ö°¡ ÇöÀç ¼¼±×¸ÕÆ® ¸®½ºÆ®ÀÇ °³¼öº¸´Ù ¸¹´Ù¸é ½ÇÇàµË´Ï´Ù.
-            Vector3 ropeStartPoint = ropeSegments[ropeSegments.Count - 1].posNow; // ·ÎÇÁÀÇ ½ÃÀÛ ÁöÁ¡À» ¼³Á¤ÇÕ´Ï´Ù.
-            segmentCount = tempSegmentCount; // ¼¼±×¸ÕÆ® °³¼ö¸¦ ÀÓ½Ã °³¼ö·Î ¾÷µ¥ÀÌÆ®ÇÕ´Ï´Ù.
-            ropeStartPoint.y += ropeSegmentLenght; // ·ÎÇÁ ½ÃÀÛ ÁöÁ¡ÀÇ y ÁÂÇ¥¸¦ ·ÎÇÁ ¼¼±×¸ÕÆ®ÀÇ ±æÀÌ¸¸Å­ Áõ°¡½ÃÅµ´Ï´Ù.
-            ropeSegments.Add(new RopeSegment(ropeStartPoint)); // »õ·Î¿î ·ÎÇÁ ¼¼±×¸ÕÆ®¸¦ Ãß°¡ÇÕ´Ï´Ù.
+            // ë§Œì•½ ê³„ì‚°ëœ ì„¸ê·¸ë¨¼íŠ¸ ê°œìˆ˜ê°€ í˜„ì¬ ì„¸ê·¸ë¨¼íŠ¸ ë¦¬ìŠ¤íŠ¸ì˜ ê°œìˆ˜ë³´ë‹¤ ë§ë‹¤ë©´ ì‹¤í–‰ë©ë‹ˆë‹¤.
+            Vector3 ropeStartPoint = ropeSegments[ropeSegments.Count - 1].posNow; // ë¡œí”„ì˜ ì‹œì‘ ì§€ì ì„ ì„¤ì •í•©ë‹ˆë‹¤.
+            segmentCount = tempSegmentCount; // ì„¸ê·¸ë¨¼íŠ¸ ê°œìˆ˜ë¥¼ ì„ì‹œ ê°œìˆ˜ë¡œ ì—…ë°ì´íŠ¸í•©ë‹ˆë‹¤.
+            ropeStartPoint.y += ropeSegmentLenght; // ë¡œí”„ ì‹œì‘ ì§€ì ì˜ y ì¢Œí‘œë¥¼ ë¡œí”„ ì„¸ê·¸ë¨¼íŠ¸ì˜ ê¸¸ì´ë§Œí¼ ì¦ê°€ì‹œí‚µë‹ˆë‹¤.
+            ropeSegments.Add(new RopeSegment(ropeStartPoint)); // ìƒˆë¡œìš´ ë¡œí”„ ì„¸ê·¸ë¨¼íŠ¸ë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
         }
         else if (tempSegmentCount < ropeSegments.Count)
         {
-            // ¸¸¾à °è»êµÈ ¼¼±×¸ÕÆ® °³¼ö°¡ ÇöÀç ¼¼±×¸ÕÆ® ¸®½ºÆ®ÀÇ °³¼öº¸´Ù Àû´Ù¸é ½ÇÇàµË´Ï´Ù.
-            segmentCount = tempSegmentCount; // ¼¼±×¸ÕÆ® °³¼ö¸¦ ÀÓ½Ã °³¼ö·Î ¾÷µ¥ÀÌÆ®ÇÕ´Ï´Ù.
-            ropeSegments.RemoveAt(ropeSegments.Count - 1); // ¸¶Áö¸·À¸·Î Ãß°¡µÈ ·ÎÇÁ ¼¼±×¸ÕÆ®¸¦ ¸®½ºÆ®¿¡¼­ Á¦°ÅÇÕ´Ï´Ù.
+            // ë§Œì•½ ê³„ì‚°ëœ ì„¸ê·¸ë¨¼íŠ¸ ê°œìˆ˜ê°€ í˜„ì¬ ì„¸ê·¸ë¨¼íŠ¸ ë¦¬ìŠ¤íŠ¸ì˜ ê°œìˆ˜ë³´ë‹¤ ì ë‹¤ë©´ ì‹¤í–‰ë©ë‹ˆë‹¤.
+            segmentCount = tempSegmentCount; // ì„¸ê·¸ë¨¼íŠ¸ ê°œìˆ˜ë¥¼ ì„ì‹œ ê°œìˆ˜ë¡œ ì—…ë°ì´íŠ¸í•©ë‹ˆë‹¤.
+            ropeSegments.RemoveAt(ropeSegments.Count - 1); // ë§ˆì§€ë§‰ìœ¼ë¡œ ì¶”ê°€ëœ ë¡œí”„ ì„¸ê·¸ë¨¼íŠ¸ë¥¼ ë¦¬ìŠ¤íŠ¸ì—ì„œ ì œê±°í•©ë‹ˆë‹¤.
         }
     }
 
@@ -114,7 +114,7 @@ public class FishingLineController : MonoBehaviour
             Vector3 velocity = currentSegment.posNow - currentSegment.posOld;
             currentSegment.posOld = currentSegment.posNow;
 
-            //Raycast°ü·Ã ¼öÁ¤µÈ ºÎºĞ
+            //Raycastê´€ë ¨ ìˆ˜ì •ëœ ë¶€ë¶„
             RaycastHit hit;
             if (Physics.Raycast(currentSegment.posNow, -Vector3.up, out hit, 0.1f))
             {
@@ -181,8 +181,8 @@ public class FishingLineController : MonoBehaviour
         }
 
     }*/
-    // ¸ğ¼Ç ÀÚ¿¬½º·´°Ô ÇÏ±â À§ÇÑ ºÎºĞ 
-    private void ApplyConstraint() // ¼öÁ¤µÈ ºÎºĞ ÀÌ ½ºÅ©¸³Æ®·Î º¯°æÇÏ¸éµÊ
+    // ëª¨ì…˜ ìì—°ìŠ¤ëŸ½ê²Œ í•˜ê¸° ìœ„í•œ ë¶€ë¶„ 
+    private void ApplyConstraint() // ìˆ˜ì •ëœ ë¶€ë¶„ ì´ ìŠ¤í¬ë¦½íŠ¸ë¡œ ë³€ê²½í•˜ë©´ë¨
     {
         RopeSegment firstSegment = ropeSegments[0];
         firstSegment.posNow = whatTheRopeIsConnectedTo.position;
@@ -270,7 +270,7 @@ public class FishingLineController : MonoBehaviour
 
         //print(ropeMass);
 
-        //Spring Joint ComponentÀÇ spring°ú damper ºÎºĞ
+        //Spring Joint Componentì˜ springê³¼ damper ë¶€ë¶„
         springJoint.spring = kRope * 1.0f;
         springJoint.damper = kRope * 0.05f;
 
@@ -283,18 +283,18 @@ public class FishingLineController : MonoBehaviour
     {
         bool hasChangedRope = false;
 
-        // ½ºÆäÀÌ½º ¹Ù¸¦ ´©¸¦ ¶§ ÁÙÀÇ ±æÀÌ¿Í segmentCount¸¦ ÁÙÀÓ
+        // ìŠ¤í˜ì´ìŠ¤ ë°”ë¥¼ ëˆ„ë¥¼ ë•Œ ì¤„ì˜ ê¸¸ì´ì™€ segmentCountë¥¼ ì¤„ì„
         if (Input.GetKey(KeyCode.Space) && ropeLength > minRopeLength)
         {
             float decreaseAmount = 5f;
             ropeLength -= decreaseAmount * Time.deltaTime;
 
-            // segmentCount¸¦ ÁÙÀÓ
+            // segmentCountë¥¼ ì¤„ì„
             if (segmentCount > 1)
             {
                 segmentCount--;
                 hasChangedRope = true;
-                Debug.Log("Segment °¨¼Ò: " + segmentCount);
+                Debug.Log("Segment ê°ì†Œ: " + segmentCount);
             }
 
             InitRope();

@@ -26,6 +26,8 @@ TagManager:
   - Box
   - DoorHand
   - Marker
+  - Hock
+  - Hook
   layers:
   - Default
   - TransparentFX
