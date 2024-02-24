@@ -28,6 +28,7 @@ TagManager:
   - Marker
   - Hock
   - Hook
+  - FishingUI
   layers:
   - Default
   - TransparentFX

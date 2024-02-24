@@ -76,7 +76,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 755e8c7934c5e124ba1f32b9bc6f6000,
         type: 3}
       propertyPath: m_Name
-      value: fish_04
+      value: "\uBD95\uC5B4"
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 755e8c7934c5e124ba1f32b9bc6f6000,
         type: 3}
@@ -99,10 +99,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 3384588596282417900}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 755e8c7934c5e124ba1f32b9bc6f6000,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1529805323690259875}
   m_SourcePrefab: {fileID: 100100000, guid: 755e8c7934c5e124ba1f32b9bc6f6000, type: 3}
 --- !u!1 &1778275625507425935 stripped
 GameObject:
@@ -133,7 +129,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -308,19 +304,5 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 42.328377, y: 16.541899, z: 7.2373033}
-  m_Center: {x: -5.485426, y: 0.08664817, z: -3.1186523}
---- !u!114 &1529805323690259875
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1778275625507425935}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ba2fe6785c2b15479375476b2bc7cdb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  grabbableObject: {fileID: 337246771667938446}
-  grabUI: {fileID: 7872930681529259891, guid: 15d5da5990664f64585569aeaced8a56, type: 3}
+  m_Size: {x: 29.666103, y: 15.275305, z: 7.2373033}
+  m_Center: {x: 12.800478, y: -0.546659, z: -3.1186523}

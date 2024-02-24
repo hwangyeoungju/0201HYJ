@@ -525,7 +525,7 @@ GameObject:
   - component: {fileID: 9008260623254505882}
   - component: {fileID: 6910230972993601540}
   m_Layer: 5
-  m_Name: "\uC5ED\uB3D4 Fishing UI    "
+  m_Name: "\uC5ED\uB3D4FishingUI"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

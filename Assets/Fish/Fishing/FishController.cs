@@ -1,13 +1,30 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class FishController : MonoBehaviour
 {
-    public GameObject[] fishPrefabs;
+    [System.Serializable]
+    public class FishUIPair
+    {
+        public GameObject fishPrefab;
+        public GameObject fishUIPrefab;
+    }
+
+    public List<FishUIPair> fishUIPairs;
+
+    public GameObject fishingUIPrefab; // 프리팹을 할당하기 위한 변수
+    public Transform fishingUIPosition; // 활성화될 위치
+
     public Transform fishPoint;
-    public GameObject fishingUIPrefab; // UI Prefab을 저장할 변수 추가
-    public float fishingUIHeight = 1f; // UI가 표시될 높이 변수 추가
-    private GameObject fishingUIInstance; // 생성된 UI 인스턴스를 저장할 변수 추가
+    public float fishingUIHeight = 1f;
+    public float fishingUIDuration = 3f; // 유아이가 보여질 시간을 늘림
+
+    private GameObject currentFish;
+    private GameObject currentHook;
+    private GameObject fishingUIInstance;
+    private GameObject previousFishingUIInstance; // 이전에 생성된 유아이를 추적하기 위한 변수 추가
+
     private bool isFishing = false;
     private bool hasCollided = false;
 
@@ -16,16 +33,10 @@ public class FishController : MonoBehaviour
         if (!isFishing && collision.gameObject.CompareTag("Water") && !hasCollided)
         {
             SoundManager.instance.PlaySfx(SoundManager.Sfx.water);
-
             hasCollided = true;
 
-            // 물과 충돌 시 UI를 표시할 위치를 기록
             Vector3 collisionPoint = collision.contacts[0].point;
-
-            // 충돌 지점에 일정 높이를 더한 위치에 UI를 배치
             Vector3 uiPosition = collisionPoint + Vector3.up * fishingUIHeight;
-
-            // 충돌 지점에 UI를 배치하고 회전하여 y축으로 90도 돌림
             ShowFishingUI(uiPosition);
 
             float randomTime = Random.Range(5f, 10f);
@@ -35,36 +46,65 @@ public class FishController : MonoBehaviour
 
     private void CreateFish()
     {
-        Debug.Log("fishing");
-        int randomFishIndex = Random.Range(0, fishPrefabs.Length);
-        GameObject selectedFishPrefab = fishPrefabs[randomFishIndex];
-        GameObject fish = Instantiate(selectedFishPrefab, fishPoint.position, Quaternion.identity);
-        if (fish != null)
-        {
-            fish.transform.parent = fishPoint;
-        }
-        // 컨트롤러에 진동을 주기
-        OVRInput.SetControllerVibration(0.5f, 1.0f, OVRInput.Controller.RTouch);
+        int randomFishIndex = Random.Range(0, fishUIPairs.Count);
+        GameObject selectedFishPrefab = fishUIPairs[randomFishIndex].fishPrefab;
+        GameObject selectedFishUIPrefab = fishUIPairs[randomFishIndex].fishUIPrefab;
 
-        // 유아이가 생성된 후 5초 후에 사라지도록 호출
-        Invoke("HideFishingUI", 5f);
+        currentFish = Instantiate(selectedFishPrefab, fishPoint.position, Quaternion.identity, fishPoint);
+        fishingUIInstance = Instantiate(selectedFishUIPrefab, fishingUIPosition.position, Quaternion.Euler(0f, 90f, 0f)); // 유아이를 90도 돌림
+
+        if (previousFishingUIInstance != null)
+        {
+            Destroy(previousFishingUIInstance);
+        }
+
+        if (currentFish != null)
+        {
+            AttachFishToHook();
+            OVRInput.SetControllerVibration(0.5f, 1.0f, OVRInput.Controller.RTouch);
+            Debug.Log("Fishing UI Activated!"); // 유아이가 활성화되었음을 디버깅 로그로 출력
+            Invoke("StartHidingFishingUI", fishingUIDuration);
+        }
     }
 
     private void ShowFishingUI(Vector3 position)
     {
         if (fishingUIPrefab != null)
         {
-            // UI Prefab을 생성하여 지정된 위치에 배치
+            // 이전에 생성된 유아이를 삭제하고 새로운 유아이 생성
+            if (previousFishingUIInstance != null)
+            {
+                Destroy(previousFishingUIInstance);
+            }
+
             fishingUIInstance = Instantiate(fishingUIPrefab, position, Quaternion.Euler(0f, 90f, 0f));
+            previousFishingUIInstance = fishingUIInstance;
         }
     }
 
+
+
     private void HideFishingUI()
     {
-        if (fishingUIInstance != null)
+        // 이전에 생성된 유아이를 삭제
+        if (previousFishingUIInstance != null)
         {
-            // 생성된 UI를 제거
-            Destroy(fishingUIInstance);
+            Destroy(previousFishingUIInstance);
         }
+        Debug.Log("Fishing UI Deactivated!"); // 유아이가 사라짐을 디버깅 로그로 출력
+    }
+
+    private void AttachFishToHook()
+    {
+        if (currentHook != null && currentFish != null)
+        {
+            currentFish.transform.SetParent(currentHook.transform);
+            currentFish.transform.localPosition = Vector3.zero;
+        }
+    }
+
+    private void StartHidingFishingUI()
+    {
+        HideFishingUI();
     }
 }
