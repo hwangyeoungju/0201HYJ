@@ -26,6 +26,9 @@ TagManager:
   - Box
   - DoorHand
   - Marker
+  - Hock
+  - Hook
+  - FishingUI
   layers:
   - Default
   - TransparentFX
